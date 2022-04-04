@@ -30,11 +30,7 @@ public class RegistrationFormTests extends TestBase {
         registrationPage.selectStateAndCity();
         registrationPage.submitRegistrationForm();
     }
-
-    @Test
-    void checkRegistrationOutput() {
-
-    }
 }
+
 
 
