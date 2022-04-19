@@ -1,31 +1,30 @@
 package it.twt.components;
 
-import com.codeborne.selenide.Condition;
-
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$x;
-import static org.apache.commons.lang.math.RandomUtils.nextInt;
-
-import java.util.ArrayList;
 import java.util.Random;
 
-public class ListOfProducts {
+public class ListOfProducts implements Interface{
+    Random random = new Random();
+
+    public String[] tipologiaArray = new String[6],
+            tipoLineaArray = new String[2],
+            taglioDiBandaArray = new String[6],
+            taglioDiBandaFTTOArray = new String[6],
+            taglioDiBandaAltroFibraCondivisaArray = new String[1],
+            taglioDiBandaWirelessAltroArray = new String[18],
+            durataArray = new String[3],
+            bandaVoceArray = new String[3],
+            vlanAggiuntiveArray = new String[2],
+            alimentazioneArray = new String[2];
+
+    public String tipologia, tipoLinea, taglioDiBanda, taglioDiBandaFTTO, taglioDiBandaWireless, durata, bandaVoce, vlanAggiuntive, alimentazione, buttonAggiungiPreventivo;
+
+    int indexOfRandomTipoLinea, indexOfRandomTaglioDiBanda, indexOfRandomTaglioDiBandaFTTO,
+            indexOdRandomTaglioDiBandaFibraCondivisa, indexOfRandomTaglioDiBandaWireless, indexOfRandomDurata,
+            indexOfRandomBandaVoce, indexOfRandomVlanAggiuntive, indexOfRandomAlimentazione;
+
     public void selectProduct() {
-        //Array of products
-        String[] productsArray = new String[6];
-        productsArray[0] = "Fibra dedicata";
-        productsArray[1] = "Fibra dedicata Premium";
-        productsArray[2] = "Fibra condivisa";
-        productsArray[3] = "Wireless licenziato";
-        productsArray[4] = "Wireless non licenziato";
-        productsArray[5] = "FTTO";
-        //SLA
-        String[] slaArray = new String[2];
-        slaArray[0] = "Base";
-        slaArray[1] = "Premium";
-        //Taglio di banda
-        String[] taglioDiBandaArray = new String[6];
+
+        /* Taglio di banda */
         taglioDiBandaArray[0] = "10 Mbps";
         taglioDiBandaArray[1] = "20 Mbps";
         taglioDiBandaArray[2] = "30 Mbps";
@@ -46,50 +45,63 @@ public class ListOfProducts {
         taglioDiBandaArray[17] = "3000 Mbps";
         taglioDiBandaArray[18] = "5000 Mbps";
         taglioDiBandaArray[19] = "10000 Mbps";
-
-        ArrayList taglioSuper = new ArrayList<>();
-        for (int i = 6; i < 20; i++) {
-            taglioSuper.add(i);
-        }
-
-        //Durata
-        String[] durataArray = new String[3];
+        /* Taglio di banda FTTO */
+        taglioDiBandaFTTOArray[0] = "2 Mbps";
+        taglioDiBandaFTTOArray[1] = "4 Mbps";
+        taglioDiBandaFTTOArray[2] = "8 Mbps";
+        taglioDiBandaFTTOArray[3] = "10 Mbps";
+        taglioDiBandaFTTOArray[4] = "1 Gbps (10 MCR)";
+        taglioDiBandaFTTOArray[5] = "1 Gbps (100 MCR)";
+        /* Taglio di banda Altro Fibra Condivisa */
+        taglioDiBandaAltroFibraCondivisaArray[0] = "1000 Mbps";
+        /* Taglio di banda Altro Wireless */
+        taglioDiBandaWirelessAltroArray[0] = "150 Mbps";
+        taglioDiBandaWirelessAltroArray[1] = "200 Mbps";
+        taglioDiBandaWirelessAltroArray[2] = "250 Mbps";
+        taglioDiBandaWirelessAltroArray[3] = "300 Mbps";
+        taglioDiBandaWirelessAltroArray[4] = "350 Mbps";
+        taglioDiBandaWirelessAltroArray[5] = "400 Mbps";
+        taglioDiBandaWirelessAltroArray[6] = "450 Mbps";
+        taglioDiBandaWirelessAltroArray[7] = "500 Mbps";
+        taglioDiBandaWirelessAltroArray[8] = "550 Mbps";
+        taglioDiBandaWirelessAltroArray[9] = "600 Mbps";
+        taglioDiBandaWirelessAltroArray[10] = "650 Mbps";
+        taglioDiBandaWirelessAltroArray[11] = "700 Mbps";
+        taglioDiBandaWirelessAltroArray[12] = "750 Mbps";
+        taglioDiBandaWirelessAltroArray[13] = "800 Mbps";
+        taglioDiBandaWirelessAltroArray[14] = "850 Mbps";
+        taglioDiBandaWirelessAltroArray[15] = "900 Mbps";
+        taglioDiBandaWirelessAltroArray[16] = "950 Mbps";
+        taglioDiBandaWirelessAltroArray[17] = "1000 Mbps";
+        /* Durata */
         durataArray[0] = "12";
         durataArray[1] = "24";
         durataArray[2] = "36";
-        //Banda voce
-        String[] bandaVoceArray = new String[3];
+        /* Banda voce */
         bandaVoceArray[0] = "Nessuna";
         bandaVoceArray[1] = "1 Mbps";
         bandaVoceArray[2] = "2 Mbps";
-        //Vlan aggiuntive
-        String[] vlanArray = new String[2];
-        vlanArray[0] = "Si";
-        vlanArray[1] = "No";
-        //Router
-        String router = "Nessun router";
-        //Alimentazione
-        String[] alimentazioneArray = new String[2];
+        /* Vlan aggiuntive */
+        vlanAggiuntiveArray[0] = "Si";
+        vlanAggiuntiveArray[1] = "No";
+        /* Alimentazione */
         alimentazioneArray[0] = "48 Vcc";
         alimentazioneArray[1] = "220 Vca";
 
-        //Random product
-        Random random = new Random();
-        int indexOfRandomProduct = random.nextInt(productsArray.length);
-        String product = productsArray[indexOfRandomProduct];
-        $x("//div[@class='btn-group col-md-11']").$(byText(product)).click();
+        /* Random */
 
-        if(productsArray[0] == product) {
-            int indexOfRandomTaglioDiBanda = random.nextInt(taglioDiBandaArray.length);
-                if(indexOfRandomTaglioDiBanda == 6) {
-                    $x("//div[@class='btn-group col-md-11']").$(byText(taglioDiBandaArray[6])).click();
-                    $x("//div[@class='popover-content']").shouldBe(visible);
+        /* Random tipo linea */
 
-                }
-            int indexOfRandomDurata = random.nextInt(durataArray.length);
-            int indexOfRandomBandaVoce = random.nextInt(bandaVoceArray.length);
-            int indexOfVlanAggiuntive = random.nextInt(vlanArray.length);
+        /* Random durata */
+        indexOfRandomDurata = random.nextInt(durataArray.length);
+        durata = durataArray[indexOfRandomDurata];
+        /* Random banda voce */
+        indexOfRandomBandaVoce = random.nextInt(bandaVoceArray.length);
+        bandaVoce = bandaVoceArray[indexOfRandomBandaVoce];
+        /* Random vlan aggiuntive */
+        indexOfRandomVlanAggiuntive = random.nextInt(vlanAggiuntiveArray.length);
+        vlanAggiuntive = vlanAggiuntiveArray[indexOfRandomVlanAggiuntive];
 
-        }
+        buttonAggiungiPreventivo = "AGGIUNGI PREVENTIVO";
     }
 }

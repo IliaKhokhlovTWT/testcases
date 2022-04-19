@@ -16,7 +16,13 @@ public class TestDataForPreventivi {
             usernameForGO = "twtmilano\\i.khokhlov",
             passwordForGO = "Gfhjkm32",
 
+            headerOfTabAnagrafica = "Selezionare l'intestatario per cui inviare la richiesta di preventivo.",
+            headerOfTabRichiesta = "Richiesta preventivo per Circuiti a progetto.",
+            headerOfTabConfigurazione = "Configurazione degli indirizzi IP.",
+            headerOfTabRiepilogo = "Riepilogo",
+
             randomComplesso = faker.number().numberBetween(1, 999) + "",
+            randomNumberForAltro = faker.number().numberBetween(7, 19) + "",
             randomScala = faker.number().numberBetween(1, 99) + "",
             randomPiano = faker.number().numberBetween(1, 99) + "",
             randomInterno = faker.number().numberBetween(1, 999) + "",
@@ -27,6 +33,9 @@ public class TestDataForPreventivi {
             randomLastname = faker.name().lastName(),
             telephoneNumber = "0000000000",
             cellularNumber = "3333333333",
+            slaBase = "Base",
+            slaPremium = "Premium",
+            router = "Nessun router",
             randomEmail = faker.internet().emailAddress(),
             randomNote = faker.random().toString();
 }
