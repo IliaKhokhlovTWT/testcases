@@ -1,14 +1,14 @@
-package it.twt.components;
+package it.twt.components.tabRichiesta;
+
+import it.twt.components.Interface;
 
 import java.util.Random;
 
-public class ListOfProducts implements Interface{
+public class ListOfProducts implements Interface {
     Random random = new Random();
-
-    public String[] tipologiaArray = new String[6],
-            tipoLineaArray = new String[2],
-            taglioDiBandaArray = new String[6],
+    public String[] taglioDiBandaArray = new String[6],
             taglioDiBandaFTTOArray = new String[6],
+            taglioDiBandaAltroArray = new String[13],
             taglioDiBandaAltroFibraCondivisaArray = new String[1],
             taglioDiBandaWirelessAltroArray = new String[18],
             durataArray = new String[3],
@@ -16,15 +16,12 @@ public class ListOfProducts implements Interface{
             vlanAggiuntiveArray = new String[2],
             alimentazioneArray = new String[2];
 
-    public String tipologia, tipoLinea, taglioDiBanda, taglioDiBandaFTTO, taglioDiBandaWireless, durata, bandaVoce, vlanAggiuntive, alimentazione, buttonAggiungiPreventivo;
-
-    int indexOfRandomTipoLinea, indexOfRandomTaglioDiBanda, indexOfRandomTaglioDiBandaFTTO,
-            indexOdRandomTaglioDiBandaFibraCondivisa, indexOfRandomTaglioDiBandaWireless, indexOfRandomDurata,
+    public String durata, bandaVoce, vlanAggiuntive, buttonAggiungiPreventivo;
+    int  indexOfRandomDurata,
             indexOfRandomBandaVoce, indexOfRandomVlanAggiuntive, indexOfRandomAlimentazione;
 
-    public void selectProduct() {
-
-        /* Taglio di banda */
+    public void selectProduct() throws NullPointerException {
+        /* Taglio di banda normale */
         taglioDiBandaArray[0] = "10 Mbps";
         taglioDiBandaArray[1] = "20 Mbps";
         taglioDiBandaArray[2] = "30 Mbps";
@@ -32,19 +29,6 @@ public class ListOfProducts implements Interface{
         taglioDiBandaArray[4] = "60 Mbps";
         taglioDiBandaArray[5] = "100 Mbps";
         taglioDiBandaArray[6] = "Altro";
-        taglioDiBandaArray[7] = "200 Mbps";
-        taglioDiBandaArray[8] = "300 Mbps";
-        taglioDiBandaArray[9] = "400 Mbps";
-        taglioDiBandaArray[10] = "500 Mbps";
-        taglioDiBandaArray[11] = "600 Mbps";
-        taglioDiBandaArray[12] = "700 Mbps";
-        taglioDiBandaArray[13] = "800 Mbps";
-        taglioDiBandaArray[14] = "900 Mbps";
-        taglioDiBandaArray[15] = "1000 Mbps";
-        taglioDiBandaArray[16] = "2000 Mbps";
-        taglioDiBandaArray[17] = "3000 Mbps";
-        taglioDiBandaArray[18] = "5000 Mbps";
-        taglioDiBandaArray[19] = "10000 Mbps";
         /* Taglio di banda FTTO */
         taglioDiBandaFTTOArray[0] = "2 Mbps";
         taglioDiBandaFTTOArray[1] = "4 Mbps";
@@ -52,6 +36,20 @@ public class ListOfProducts implements Interface{
         taglioDiBandaFTTOArray[3] = "10 Mbps";
         taglioDiBandaFTTOArray[4] = "1 Gbps (10 MCR)";
         taglioDiBandaFTTOArray[5] = "1 Gbps (100 MCR)";
+        /* Taglio di banda Altro */
+        taglioDiBandaAltroArray[0] = "200 Mbps";
+        taglioDiBandaAltroArray[1] = "300 Mbps";
+        taglioDiBandaAltroArray[2] = "400 Mbps";
+        taglioDiBandaAltroArray[3] = "500 Mbps";
+        taglioDiBandaAltroArray[4] = "600 Mbps";
+        taglioDiBandaAltroArray[5] = "700 Mbps";
+        taglioDiBandaAltroArray[6] = "800 Mbps";
+        taglioDiBandaAltroArray[7] = "900 Mbps";
+        taglioDiBandaAltroArray[8] = "1000 Mbps";
+        taglioDiBandaAltroArray[9] = "2000 Mbps";
+        taglioDiBandaAltroArray[10] = "3000 Mbps";
+        taglioDiBandaAltroArray[11] = "5000 Mbps";
+        taglioDiBandaAltroArray[12] = "10000 Mbps";
         /* Taglio di banda Altro Fibra Condivisa */
         taglioDiBandaAltroFibraCondivisaArray[0] = "1000 Mbps";
         /* Taglio di banda Altro Wireless */
@@ -73,6 +71,7 @@ public class ListOfProducts implements Interface{
         taglioDiBandaWirelessAltroArray[15] = "900 Mbps";
         taglioDiBandaWirelessAltroArray[16] = "950 Mbps";
         taglioDiBandaWirelessAltroArray[17] = "1000 Mbps";
+
         /* Durata */
         durataArray[0] = "12";
         durataArray[1] = "24";

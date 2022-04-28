@@ -1,10 +1,12 @@
-package it.twt.components;
+package it.twt.components.tabRichiesta;
+
+import it.twt.components.Interface;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$x;
 
-public class AlimentazioneComponent extends RouterComponent implements Interface{
+public class AlimentazioneComponent extends RouterComponent implements Interface {
     public void setAlimentazione() {
         indexOfRandomAlimentazione = random.nextInt(alimentazioneArray.length);
         alimentazioneArray[0] = "48 Vcc";

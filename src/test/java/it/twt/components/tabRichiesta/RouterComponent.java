@@ -1,4 +1,6 @@
-package it.twt.components;
+package it.twt.components.tabRichiesta;
+
+import it.twt.components.Interface;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;

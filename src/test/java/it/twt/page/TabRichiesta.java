@@ -1,7 +1,8 @@
 package it.twt.page;
 
 import com.codeborne.selenide.SelenideElement;
-import it.twt.components.*;
+import it.twt.components.Interface;
+import it.twt.components.tabRichiesta.*;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
@@ -12,16 +13,16 @@ import static it.twt.testData.TestDataForPreventivi.randomNote;
 
 
 public class TabRichiesta extends ListOfProducts implements Interface {
-    private SelenideElement
+    private final SelenideElement
         formTitle = $x("//div[@class='panel-heading panel-default']"),
-        tipologiaSelect = $x("//div[@class='btn-group col-md-11']").$(byText(tipologia)),
+        /*tipologiaSelect = $x("//div[@class='btn-group col-md-11']").$(byText(tipologia)),
         tipoLineaSelect = $x("//div[@class='btn-group col-md-11']").$(byText(tipoLinea)),
         taglioDiBandaSelect = $x("//div[@class='btn-group col-md-11']").$(byText(taglioDiBanda)),
         taglioDiBandaFTTOSelect = $x("//div[@class='btn-group col-md-11']").$(byText(taglioDiBandaFTTO)),
         durataSelect = $x("//div[@class='btn-group col-md-11']").$(byText(durata)),
         vlanAggiuntiveSelect = $x("//div[@class='btn-group col-md-11']").$(byText(vlanAggiuntive)),
-        alimentazioneSelect = $x("//div[@class='btn-group col-md-11']").$(byText(alimentazione)),
-        buttonOfAggiungiPreventivo = $x("//a[@class='btn btn-primary btn-addon']").$(byText(buttonAggiungiPreventivo)),
+        alimentazioneSelect = $x("//div[@class='btn-group col-md-11']").$(byText(alimentazione)), */
+        buttonOfAggiungiPreventivo = $x("//a[@class='btn btn-primary btn-addon']"),
         noteInput = $x("//div[@class='col-md-9']"),
         buttonAvanti = $x("//button[@class='btn btn-primary btn-lg ng-scope']");
 
@@ -58,7 +59,7 @@ public class TabRichiesta extends ListOfProducts implements Interface {
         alimentazioneComponent.setAlimentazione();
     }
     public void selectPreventivo() {
-        buttonOfAggiungiPreventivo.click();
+        buttonOfAggiungiPreventivo.find(byText(buttonAggiungiPreventivo)).click();
     }
     public void inputNote() {
         noteInput.setValue(randomNote);
