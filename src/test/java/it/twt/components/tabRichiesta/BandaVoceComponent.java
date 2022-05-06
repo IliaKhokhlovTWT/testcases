@@ -1,12 +1,16 @@
 package it.twt.components.tabRichiesta;
 
 import it.twt.components.Interface;
+import it.twt.components.products.GeneralListOfProductsAndElements;
+
+import java.util.Random;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$x;
 
-public class BandaVoceComponent extends DurataComponent implements Interface {
+public class BandaVoceComponent extends GeneralListOfProductsAndElements {
+    Random random = new Random();
     public void setBandaVoce() {
         indexOfRandomBandaVoce = random.nextInt(bandaVoceArray.length);
         bandaVoceArray[0] = "Nessuna";

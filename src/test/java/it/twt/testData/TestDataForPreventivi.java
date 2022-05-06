@@ -1,11 +1,11 @@
 package it.twt.testData;
+
 import com.github.javafaker.Faker;
 
 public class TestDataForPreventivi {
     static Faker faker = new Faker();
     public static String
             environmentPrefics = "114",
-            circuitiProgettoDashboardUrl = "http://114.milano.twt/api/reseller/Authorization/GetMenu",
             urlCRM = "http://staging-web.oryx.milano.twt/workspace#/my",
             urlGOReportOfferte = "http://main.milano.twt/go/Report_OfferteCRM.aspx",
 
@@ -29,7 +29,9 @@ public class TestDataForPreventivi {
             randomLatitudine = faker.address().latitude(),
             randomLongitudine = faker.address().longitude(),
 
-            randomFirstname = faker.name().firstName(),
+            buttonAggiungiPreventivo = "AGGIUNGI PREVENTIVO",
+
+             randomFirstname = faker.name().firstName(),
             randomLastname = faker.name().lastName(),
             telephoneNumber = "0000000000",
             cellularNumber = "3333333333",

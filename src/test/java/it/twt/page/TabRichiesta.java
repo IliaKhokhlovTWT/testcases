@@ -2,32 +2,52 @@ package it.twt.page;
 
 import com.codeborne.selenide.SelenideElement;
 import it.twt.components.Interface;
+import it.twt.components.products.*;
 import it.twt.components.tabRichiesta.*;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$x;
 import static it.twt.testData.TestDataForPreventivi.headerOfTabRichiesta;
 import static it.twt.testData.TestDataForPreventivi.randomNote;
 
 
-public class TabRichiesta extends ListOfProducts implements Interface {
+public class TabRichiesta extends GeneralListOfProductsAndElements {
+
     private final SelenideElement
         formTitle = $x("//div[@class='panel-heading panel-default']"),
-        /*tipologiaSelect = $x("//div[@class='btn-group col-md-11']").$(byText(tipologia)),
-        tipoLineaSelect = $x("//div[@class='btn-group col-md-11']").$(byText(tipoLinea)),
-        taglioDiBandaSelect = $x("//div[@class='btn-group col-md-11']").$(byText(taglioDiBanda)),
-        taglioDiBandaFTTOSelect = $x("//div[@class='btn-group col-md-11']").$(byText(taglioDiBandaFTTO)),
-        durataSelect = $x("//div[@class='btn-group col-md-11']").$(byText(durata)),
-        vlanAggiuntiveSelect = $x("//div[@class='btn-group col-md-11']").$(byText(vlanAggiuntive)),
-        alimentazioneSelect = $x("//div[@class='btn-group col-md-11']").$(byText(alimentazione)), */
+
+        fibraDedicataDisabledCheck = $x("(//button[normalize-space()='Fibra dedicata'])[1]").shouldBe(disabled),
+        fibraDedicataPremiumDisabledCheck = $x("(//button[normalize-space()='Fibra dedicata Premium'])[1]").shouldBe(disabled),
+        fibraCondivisaDisabledCheck = $x("//button[normalize-space()='Fibra condivisa']").shouldBe(disabled),
+        wirelessLicDisabledCheck = $x("//button[normalize-space()='Wireless licenziato']").shouldBe(disabled),
+        wirelessNonLicDisabledCheck = $x("//button[normalize-space()='Wireless non licenziato']").shouldBe(disabled),
+        FTTODisabledCheck = $x("//button[normalize-space()='FTTO']").shouldBe(disabled),
+
         buttonOfAggiungiPreventivo = $x("//a[@class='btn btn-primary btn-addon']"),
         noteInput = $x("//div[@class='col-md-9']"),
         buttonAvanti = $x("//button[@class='btn btn-primary btn-lg ng-scope']");
 
+        private Boolean fibraDedicataSelected = fibraDedicataPremiumDisabledCheck.exists() && fibraCondivisaDisabledCheck.exists() &&
+                wirelessLicDisabledCheck.exists() && wirelessNonLicDisabledCheck.exists() && FTTODisabledCheck.exists(),
+                fibraDedicataPremiumSelected = fibraDedicataDisabledCheck.exists() && fibraCondivisaDisabledCheck.exists() &&
+                wirelessLicDisabledCheck.exists() && wirelessNonLicDisabledCheck.exists() && FTTODisabledCheck.exists(),
+                fibraCondivisaSelected = fibraDedicataDisabledCheck.exists() && fibraDedicataPremiumDisabledCheck.exists() &&
+                wirelessLicDisabledCheck.exists() && wirelessNonLicDisabledCheck.exists() && FTTODisabledCheck.exists(),
+                wirelessLicSelected = fibraDedicataDisabledCheck.exists() && fibraDedicataPremiumDisabledCheck.exists() &&
+                fibraCondivisaDisabledCheck.exists() && wirelessNonLicDisabledCheck.exists() && FTTODisabledCheck.exists(),
+                wirelessNonLicSelected = fibraDedicataDisabledCheck.exists() && fibraDedicataPremiumDisabledCheck.exists() &&
+                fibraCondivisaDisabledCheck.exists() && wirelessLicDisabledCheck.exists() && FTTODisabledCheck.exists(),
+                FTTOSelected = fibraDedicataDisabledCheck.exists() && fibraDedicataPremiumDisabledCheck.exists() &&
+                fibraCondivisaDisabledCheck.exists() && wirelessLicDisabledCheck.exists() && wirelessNonLicDisabledCheck.exists();
+
     TipologiaComponent tipologiaComponent = new TipologiaComponent();
-    TaglioDiBandaComponent tagliodiBandaComponent = new TaglioDiBandaComponent();
+    FibraDedicataProduct fibraDedicataProduct = new FibraDedicataProduct();
+    FibraDedicataPremiumProduct fibraDedicataPremiumProduct = new FibraDedicataPremiumProduct();
+    FibraCondivisaProduct fibraCondivisaProduct = new FibraCondivisaProduct();
+    FibraWirelessLicProduct fibraWirelessLicProduct = new FibraWirelessLicProduct();
+    FibraWirelessNonLicProduct fibraWirelessNonLicProduct = new FibraWirelessNonLicProduct();
+    FTTOProduct fttoProduct = new FTTOProduct();
     DurataComponent durataComponent = new DurataComponent();
     BandaVoceComponent bandaVoceComponent = new BandaVoceComponent();
     VlanAggiuntiveComponent vlanAggiuntiveComponent = new VlanAggiuntiveComponent();
@@ -40,9 +60,22 @@ public class TabRichiesta extends ListOfProducts implements Interface {
     public void inputTipologia() {
         tipologiaComponent.setTipologia();
     }
-    public void inputTaglioDiBanda() {
-        tagliodiBandaComponent.setTaglioDiBanda();
+    public void settingOfProduct() {
+        if(fibraDedicataSelected) {
+            fibraDedicataProduct.settingOfFibraDedicata();
+        } else if(fibraDedicataPremiumSelected) {
+            fibraDedicataPremiumProduct.settingOfFibraDedicataPremium();
+        } else if(fibraCondivisaSelected) {
+            fibraCondivisaProduct.settingOfFibraCondivisa();
+        } else if(wirelessLicSelected) {
+            fibraWirelessLicProduct.settingOfWirelessLic();
+        } else if(wirelessNonLicSelected) {
+            fibraWirelessNonLicProduct.settingOfWirelessNonLic();
+        } else if(FTTOSelected) {
+            fttoProduct.settingOfFTTO();
+        }
     }
+
     public void inputDurata() {
         durataComponent.setDurata();
     }

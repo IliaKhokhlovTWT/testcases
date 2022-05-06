@@ -6,7 +6,7 @@ import it.twt.page.TabRichiesta;
 import it.twt.testData.TestBase;
 import org.junit.jupiter.api.Test;
 
-public class CreatePreventivo extends TestBase {
+public class CreateRandomPreventivo extends TestBase {
     TabAnagrafica tabAnagrafica = new TabAnagrafica();
     TabRichiesta tabRichiesta = new TabRichiesta();
     TabDashboard tabDashboard = new TabDashboard();
@@ -22,7 +22,7 @@ public class CreatePreventivo extends TestBase {
 
         tabRichiesta.checkHeader();
         tabRichiesta.inputTipologia();
-        tabRichiesta.inputTaglioDiBanda();
+        tabRichiesta.settingOfProduct();
         tabRichiesta.inputDurata();
         tabRichiesta.inputBandaVoce();
         tabRichiesta.inputVlabAggiuntive();
